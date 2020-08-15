@@ -19,7 +19,7 @@ async def on_member_join(member):
 @bot.event
 async def on_member_remove(member):
     channel = discord.utils.get(member.guild.channels, name='welcome')
-    await channel.send(f':cry: {member.mention} left the server')
+    await channel.send(f'{member.mention} left the server')
 
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):

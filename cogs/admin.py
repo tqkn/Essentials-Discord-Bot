@@ -44,9 +44,12 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(manage_nicknames=True)
-    async def nick(self, ctx, member: discord.member, nick):
-        await member.edit(nick=nick)
-        await ctx.send(f'Nickname was changed for {member.mention} ')
+    async def nick(self, ctx, member : discord.member, nick):
+        try:
+            await member.edit(nick=nick)
+            await ctx.send(f'Nickname was changed for {member.mention} ')
+        except PermissionError:
+            await ctx.send(f"Can't Nick {member.mention} Insufficient Permissions")
 
 def setup(bot):
     bot.add_cog(Admin(bot))
