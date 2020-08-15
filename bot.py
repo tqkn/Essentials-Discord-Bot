@@ -25,7 +25,14 @@ for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
 
-bot.run('NzMyMjAwNjUzNzg2NzEwMDM3.XwxI_w.TrML_OaZAZ8BHwAOWiRrgzh4fAA')
+def read_token():
+    with open("token.txt", "r") as f:
+        lines = f.readlines()
+        return lines[0].strip()
+
+token = read_token()
+
+bot.run(token)
 
 
 
