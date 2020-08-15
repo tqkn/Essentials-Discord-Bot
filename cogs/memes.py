@@ -36,7 +36,6 @@ class Memes(commands.Cog):
 
         await ctx.send(embed=dick_embed)
 
-
     @commands.command()
     async def love(self, ctx, member, member2):
         love_chance = random.randint(1, 100)

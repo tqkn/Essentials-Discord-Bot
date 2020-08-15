@@ -7,31 +7,35 @@ class Misc(commands.Cog):
         self.bot = bot
     
     @commands.command()
-    async def help(self, ctx, type=all):
-        if (type == all):
+    async def help(self, ctx, type = 'all'):
+        if (type == 'all'):
             help_embed = discord.Embed(
                 title = 'Discord Essentials Command List',
                 colour = discord.Colour.purple(),
                 description = "List of aviable help commands for Discord Essentials",
             )
 
-            help_embed.add_field(name=':blue_book: Info', value='`.help info`')
+            help_embed.add_field(name=':blue_book: Misc', value='`.help misc`')
             help_embed.add_field(name=':tools: Admin', value='`.help admin`')
             help_embed.add_field(name=':tada: Memes', value='`.help memes`')
-
         elif (type == 'info'):
             help_embed = discord.Embed(
                 title = 'Discord Essentials Command List',
                 colour = discord.Colour.purple(),
-                description = "Incorrect help command"
+                description = "Misc Commands \n ```.help (option) \n.info ```"
             )
-        else:
+        elif (type == 'admin'):
             help_embed = discord.Embed(
                 title = 'Discord Essentials Command List',
                 colour = discord.Colour.purple(),
-                description = "Incorrect help command"
+                description = "Admin Commands \n ```.ban (user) (reason) \n.kick (user) (reason) \n.unban (user) \n.clear (amount) \n.nick (user) (nick) ```"
             )
-
+        elif (type == 'memes'):
+            help_embed = discord.Embed(
+                title = 'Discord Essentials Command List',
+                colour = discord.Colour.purple(),
+                description = "Meme Commands \n ```.dick \n.love (member 1) (member 2)```"
+            )
 
         await ctx.send(embed=help_embed)
 
