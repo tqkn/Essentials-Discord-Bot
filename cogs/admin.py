@@ -10,13 +10,13 @@ class Admin(commands.Cog):
     #admins commands
     
     @commands.command()
-    @commands.has_permissions(ban_members = False)
+    @commands.has_permissions(kick_members = True)
     async def kick(self, ctx, member : discord.Member, *, reason = None):
         await member.kick(reason=reason)
 
     @commands.command()
     @commands.has_permissions(ban_members = True)
-    async def ban(self, ctx, member : discord.member, *, reason = None):
+    async def ban(self, ctx, member : discord.Member, *, reason = None):
         await member.ban(reason=reason)
 
     @commands.command()
@@ -44,11 +44,11 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(manage_nicknames=True)
-    async def nick(self, ctx, member : discord.member, nick):
+    async def nick(self, ctx, member : discord.Member, nick):
         try:
             await member.edit(nick=nick)
             await ctx.send(f'Nickname was changed for {member.mention} ')
-        except PermissionError:
+        except:
             await ctx.send(f"Can't Nick {member.mention} Insufficient Permissions")
 
 def setup(bot):
