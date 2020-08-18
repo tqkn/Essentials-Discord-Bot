@@ -50,6 +50,29 @@ class Admin(commands.Cog):
             await ctx.send(f'Nickname was changed for {member.mention} ')
         except:
             await ctx.send(f"Can't Nick {member.mention} Insufficient Permissions")
+    
+    @commands.command()
+    @commands.has_permissions(ban_members=True)
+    async def role(self, ctx, type, member : discord.Member, role):
+        try:
+            if (type == 'add'):
+                if (member == 'all'):
+                    for m in ctx.guild.members:
+                        await member.add_roles(role=role)
+                    await ctx.send(f'Given {role} role to all members')
+                else:
+                    await member.add_roles(role=role)
+                    await ctx.send(f'{member.mention} is now {role} role')
+            elif (type == 'remove'):
+                if (member == 'all'):
+                    for m in ctx.guild.members:
+                        await member.remove_roles(role=role)
+                    await ctx.send(f'Removed {role} role from all members')
+                else:
+                    await member.remove_roles(role=role)
+                    await ctx.send(f'{member.mention} {role} role has been removed')
+        except:
+            await ctx.send(f"Can't edit {member.mention}'s role | Error Occured")
 
 def setup(bot):
     bot.add_cog(Admin(bot))
