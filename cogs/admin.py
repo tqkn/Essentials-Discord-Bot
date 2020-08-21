@@ -53,24 +53,14 @@ class Admin(commands.Cog):
     
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def role(self, ctx, type, member : discord.Member, role):
+    async def role(self, ctx, type, member : discord.Member, *, role : discord.Role):
         try:
             if (type == 'add'):
-                if (member == 'all'):
-                    for m in ctx.guild.members:
-                        await member.add_roles(role=role)
-                    await ctx.send(f'Given {role} role to all members')
-                else:
-                    await member.add_roles(role=role)
-                    await ctx.send(f'{member.mention} is now {role} role')
+                await member.add_roles(role)
+                await ctx.send(f"{member.mention} Has been given the {role} Role  ")
             elif (type == 'remove'):
-                if (member == 'all'):
-                    for m in ctx.guild.members:
-                        await member.remove_roles(role=role)
-                    await ctx.send(f'Removed {role} role from all members')
-                else:
-                    await member.remove_roles(role=role)
-                    await ctx.send(f'{member.mention} {role} role has been removed')
+                await member.add_roles(role)
+                await ctx.send(f"{member.mention}'s {role} Has been removed")
         except:
             await ctx.send(f"Can't edit {member.mention}'s role | Error Occured")
 
