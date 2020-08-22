@@ -64,5 +64,27 @@ class Admin(commands.Cog):
         except:
             await ctx.send(f"Can't edit {member.mention}'s role | Error Occured")
 
+    @commands.command()
+    @commands.has_permissions(ban_members=True)
+    async def roleall(self, ctx, type, *, role : discord.Role):
+        try:
+            if (type == 'add'):
+                for member in ctx.guild.members:
+                    try:
+                        await member.add_roles(role)
+                    except:
+                        await ctx.send(f"{member.mention} Could not be given {role} Role")   
+                await ctx.send(f"Added {role} Role to available members succesfully")  
+            elif (type == 'remove'):
+                for member in ctx.guild.members:
+                    try:
+                        await member.remove_roles(role)
+                    except:
+                        await ctx.send(f"Could not remove {role} Role from {member.mention}")   
+                await ctx.send(f"Removed {role} Role from available members succesfully")  
+        except:
+            await ctx.send(f"Can't edit Server User's roles | Error Occured")
+
+
 def setup(bot):
     bot.add_cog(Admin(bot))

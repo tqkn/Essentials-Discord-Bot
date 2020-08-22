@@ -33,6 +33,3 @@ def read_token():
 token = read_token()
 
 bot.run(token)
-
-
-
